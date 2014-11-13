@@ -24,9 +24,8 @@ func main() {
         }
         fmt.Println("listing...")
         doc.Find("#dataTable tbody tr").Each(func(i int, s *goquery.Selection) {
-          description := s.Get(0).Text()
-          provider := s.Get(1).Text()
-          fmt.Println("%d) %s = %s", i, description, provider)
+          description := s.First().Text()
+          fmt.Println("%d) %s", i, description)
         })
       },
     },
