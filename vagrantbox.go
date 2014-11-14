@@ -22,7 +22,6 @@ func main() {
   _, err := exec.Command("which", "vagrant").Output()
   if err != nil {
     fmt.Println("You need to install vagrant first...\nPlease check this site: https://www.vagrantup.com")
-    log.Fatal(err)
     return
   }
   app := cli.NewApp()
@@ -64,28 +63,26 @@ func main() {
     fmt.Println("==================================================")
     fmt.Println("Installing choosed box...")
     fmt.Printf("vagrant box add %s %s\n", title, vbox.link)
-    vb_add_out, vb_add_err := exec.Command("vagrant", "box", "add", title, vbox.link).Output()
+    _, vb_add_err := exec.Command("vagrant", "box", "add", title, vbox.link).Output()
     if vb_add_err != nil {
       log.Fatal(vb_add_err)
       return
     }
-    fmt.Println(vb_add_out)
     // vagrant init {title}
     fmt.Printf("vagrant init %s\n", title)
-    vb_init_out, vb_init_err := exec.Command("vagrant", "init", title).Output()
+    _, vb_init_err := exec.Command("vagrant", "init", title).Output()
     if vb_init_err != nil {
       log.Fatal(vb_init_err)
       return
     }
-    fmt.Println(vb_init_out)
     // vagrant up
     fmt.Printf("vagrant up\n")
-    vb_up_out, vb_up_err := exec.Command("vagrant", "up").Output()
+    _, vb_up_err := exec.Command("vagrant", "up").Output()
     if vb_up_err != nil {
       log.Fatal(vb_up_err)
       return
     }
-    fmt.Println(vb_up_out)
+    fmt.Println("Your box is up and running...see ya!")
   }
   app.Run(os.Args)
 }
