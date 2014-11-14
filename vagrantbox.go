@@ -19,12 +19,7 @@ type vagrantbox struct {
 }
 
 func main() {
-  _, path_err := exec.Command("export PATH=/usr/bin:/bin:/usr/local/bin:$PATH").Output()
-  if path_err != nil {
-    log.Fatal(path_err)
-    return
-  }
-  _, err := exec.Command("which vagrant").Output()
+  _, err := exec.Command("which", "vagrant").Output()
   if err != nil {
     fmt.Println("You need to install vagrant first...\nPlease check this site: https://www.vagrantup.com")
     log.Fatal(err)
@@ -68,13 +63,29 @@ func main() {
     fmt.Scanf("%s", &title)
     fmt.Println("==================================================")
     fmt.Println("Installing choosed box...")
-    cmd := fmt.Sprintf("vagrant box add %s %s && vagrant init %s && vagrant up",title, vbox.link, title)
-    out, err := exec.Command(cmd).Output()
-    if err != nil {
-      log.Fatal(err)
+    fmt.Printf("vagrant box add %s %s\n", title, vbox.link)
+    vb_add_out, vb_add_err := exec.Command("vagrant", "box", "add", title, vbox.link).Output()
+    if vb_add_err != nil {
+      log.Fatal(vb_add_err)
       return
     }
-    fmt.Println(out)
+    fmt.Println(vb_add_out)
+    // vagrant init {title}
+    fmt.Printf("vagrant init %s\n", title)
+    vb_init_out, vb_init_err := exec.Command("vagrant", "init", title).Output()
+    if vb_init_err != nil {
+      log.Fatal(vb_init_err)
+      return
+    }
+    fmt.Println(vb_init_out)
+    // vagrant up
+    fmt.Printf("vagrant up\n")
+    vb_up_out, vb_up_err := exec.Command("vagrant", "up").Output()
+    if vb_up_err != nil {
+      log.Fatal(vb_up_err)
+      return
+    }
+    fmt.Println(vb_up_out)
   }
   app.Run(os.Args)
 }
