@@ -14,9 +14,9 @@ sudo make install
 
 Run: `vagrantbox`
 
-This command will list all existing boxes and you will need to choose one box, set a title and the rest will be automatically installed.
+This command will list all existing boxes and you will just need to choose a box, setting a title for it and the rest will automatically be installed.
 
 ### Author
 
-Caio Ribeiro Pereira - caio.ribeiro.pereira@gmail.com 
+Caio Ribeiro Pereira - caio.ribeiro.pereira@gmail.com  
 MIT License <http://caio-ribeiro-pereira.mit-license.org>
