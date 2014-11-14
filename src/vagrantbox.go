@@ -42,7 +42,7 @@ func main() {
 		doc.Find("#dataTable tbody tr").Each(func(i int, s *goquery.Selection) {
 			data := s.Find("td")
 			vbox := vagrantbox{
-				description: strings.TrimSpace(re.ReplaceAllString(data.Eq(0).Text(), " "))
+				description: strings.TrimSpace(re.ReplaceAllString(data.Eq(0).Text(), " ")),
 				provider: data.Eq(1).Text(),
 				link: data.Eq(2).Text(),
 				size: data.Eq(3).Text(),
