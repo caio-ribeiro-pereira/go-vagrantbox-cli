@@ -8,6 +8,8 @@ Instalation: `cd go-vagrantbox-cli && sudo make install`
 
 Run: `vagrantbox`
 
+This command will list all existing boxes and you will need to choose one box, set a title and the rest will be automatically installed.
+
 ### Author
 
 Caio Ribeiro Pereira - caio.ribeiro.pereira@gmail.com 
