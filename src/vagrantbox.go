@@ -28,6 +28,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "vagrantbox"
 	app.Usage = "CLI to install vagrant box from http://www.vagrantbox.es"
+	app.Version = "0.0.1"
 	app.Action = func(c *cli.Context) {
 		fmt.Println("Please wait, we are listing...")
 		doc, err := goquery.NewDocument("http://www.vagrantbox.es")

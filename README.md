@@ -16,6 +16,8 @@ Run: `vagrantbox`
 
 This command will list all existing boxes and you will just need to choose a box, setting a title for it and the rest will automatically be installed.
 
+This CLI only works in Unix, Linux or MacOSX operational system, if you wanna use it in Windows and you know about Golang, please help us making a pull request with this patch!
+
 ### Author
 
 Caio Ribeiro Pereira - caio.ribeiro.pereira@gmail.com  
