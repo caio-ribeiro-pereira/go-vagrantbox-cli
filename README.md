@@ -7,9 +7,7 @@ It's a CLI tool written in Go which list and install all vagrant boxes from http
 Instalation: 
 
 ``` bash
-git clone https://github.com/caio-ribeiro-pereira/go-vagrantbox-cli.git
-cd go-vagrantbox-cli
-sudo make install
+go get github.com/caio-ribeiro-pereira/go-vagrantbox-cli
 ```
 
 Run: `vagrantbox`
