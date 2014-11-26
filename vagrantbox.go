@@ -10,6 +10,8 @@ import (
 	"strings"
 )
 
+const VERSION string = "0.0.2"
+
 type vagrantbox struct {
 	id          int
 	description string
@@ -20,8 +22,9 @@ type vagrantbox struct {
 }
 
 func checkVagrant() {
+	fmt.Println("Checking vagrant command...")
 	if _, err := exec.Command("which", "vagrant").Output(); err != nil {
-		fmt.Println("You need to install vagrant first...")
+		fmt.Println("Sorry, you need to install vagrant first...")
 		fmt.Println("Please check this site: https://www.vagrantup.com")
 		os.Exit(0)
 	}
@@ -75,6 +78,8 @@ func chooseVbox(vboxes []vagrantbox) vagrantbox {
 }
 
 func main() {
+	fmt.Printf("GoVagrantBox - v%s\n", VERSION)
+	fmt.Println("--------------------------------------------------")
 	checkVagrant()
 	vboxes := listVBoxes()
 	vbox := chooseVbox(vboxes)
