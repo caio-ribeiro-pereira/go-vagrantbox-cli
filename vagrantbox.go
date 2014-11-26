@@ -2,21 +2,21 @@ package main
 
 import (
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"log"
 	"os"
 	"os/exec"
 	"regexp"
 	"strings"
-	"github.com/PuerkitoBio/goquery"
 )
 
 type vagrantbox struct {
-	id					int
+	id          int
 	description string
 	provider    string
 	size        string
 	link        string
-	title				string
+	title       string
 }
 
 func checkVagrant() {
@@ -30,7 +30,6 @@ func checkVagrant() {
 func callVagrant(args ...string) {
 	if _, err := exec.Command("vagrant", args...).Output(); err != nil {
 		log.Fatal(err)
-		os.Exit(0)
 	}
 }
 
@@ -40,18 +39,17 @@ func listVBoxes() []vagrantbox {
 	if err != nil {
 		fmt.Println("Problems to request http://www.vagrantbox.es.")
 		log.Fatal(err)
-		os.Exit(0)
 	}
 	re := regexp.MustCompile("[\n\t ]{1,}")
 	vboxes := []vagrantbox{}
 	doc.Find("#dataTable tbody tr").Each(func(i int, s *goquery.Selection) {
 		data := s.Find("td")
 		vbox := vagrantbox{
-			id: i,
+			id:          i,
 			description: strings.TrimSpace(re.ReplaceAllString(data.Eq(0).Text(), " ")),
-			provider: data.Eq(1).Text(),
-			link: data.Eq(2).Text(),
-			size: data.Eq(3).Text(),
+			provider:    data.Eq(1).Text(),
+			link:        data.Eq(2).Text(),
+			size:        data.Eq(3).Text(),
 		}
 		fmt.Printf("ID: %d\n", vbox.id)
 		fmt.Printf("Description: %s\n", vbox.description)
